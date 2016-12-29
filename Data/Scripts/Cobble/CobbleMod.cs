@@ -60,9 +60,34 @@ namespace DayDot.Cobble
 
         protected bool[] m_paveableMaterials;
 
+        private const string CobbleItemId = "LargeStone";
+        private static readonly MyDefinitionId CobbleItem = new MyDefinitionId(typeof(MyObjectBuilder_Component), CobbleItemId);
+
+        IMyHudNotification notify = null;
+
+        public void HudNotification(string message)
+        {
+            if (MyAPIGateway.Session != null)
+            {
+                if (notify == null)
+                {
+                    notify = MyAPIGateway.Utilities.CreateNotification(message, 2000, MyFontEnum.Red);
+                }
+                else
+                {
+                    notify.Text = message;
+                    notify.ResetAliveTime();
+                }
+
+                notify.Show();
+            }
+        }
+
         public override void BeforeStart()
         {
             base.BeforeStart();
+
+            //not yet implemented
             this.m_paveableMaterials = new bool[256];
             for (int index = 0; index < 256; ++index)
                 this.m_paveableMaterials[index] = false;
@@ -80,6 +105,7 @@ namespace DayDot.Cobble
 
             foreach (string plowableMaterial in PaveableMaterialNames)
                 this.m_paveableMaterials[(int)MyDefinitionManager.Static.GetDefinition<MyVoxelMaterialDefinition>(plowableMaterial).Index] = true;
+
         }
 
         public void DrawTool(MyHandToolBase gun)
@@ -125,6 +151,9 @@ namespace DayDot.Cobble
                 Log.Error(str, str);
                 return;
             }
+
+            //get large stone
+
 
         }
 
@@ -201,7 +230,6 @@ namespace DayDot.Cobble
 
         private void Shoot()
         {
-
             var character = MyAPIGateway.Session.ControlledObject as IMyCharacter;
             if (character == null)
                 return;
@@ -215,13 +243,28 @@ namespace DayDot.Cobble
             var view = character.GetHeadMatrix(true, true);
             var target = view.Translation + view.Forward;
 
+            //check for item in inv
+            if (!MyAPIGateway.Session.CreativeMode && (pressedButton == MouseButton.Left) && (cobble != null))
+            {
+                var ent = character.Entity as MyEntity;
+                var inv = ent.GetInventory(0) as MyInventory;
 
+                if (inv == null)
+                    return;
+
+                if (inv.GetItemAmount(CobbleItem) >= 1)
+                    inv.RemoveItemsOfType(1, CobbleItem);
+                else
+                {
+                    HudNotification("You need large stone to pave.");
+                    return;
+                }
+            }
             var done = ToolProcess(map, target, view);
         }
 
         private bool ToolProcess(IMyVoxelBase map, Vector3D target, MatrixD view)
         {
-            
             var shape = MyAPIGateway.Session.VoxelMaps.GetBoxVoxelHand();
             var vec = (Vector3D.One / 2) * 2.0;
             var bounding = new BoundingBoxD(-vec, vec);
@@ -243,10 +286,8 @@ namespace DayDot.Cobble
             }
 
             placeMatrix.Translation = target;
-            
             placeShape.Transform = placeMatrix;
             
-
             byte materialIndex = dirt.Index;
             if ((pressedButton == MouseButton.Left) && (cobble != null))
                 materialIndex = cobble.Index;
