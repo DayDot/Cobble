@@ -10,7 +10,7 @@
       <Icon>Textures\GUI\Icons\PavingHammer.dds</Icon>
       <Prerequisites>
         <Item Amount="5" TypeId="Component" SubtypeId="WoodenSticks" />
-        <Item Amount="2" TypeId="Component" SubtypeId="IronIngot" />
+        <Item Amount="3" TypeId="Component" SubtypeId="IronIngot" />
       </Prerequisites>
       <Result Amount="1" TypeId="PhysicalGunObject" SubtypeId="PavingHammer" />
       <BaseProductionTimeInSeconds>1</BaseProductionTimeInSeconds>

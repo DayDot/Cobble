@@ -16,6 +16,7 @@ using VRage.Utils;
 using Sandbox.Definitions;
 using VRage.Voxels;
 using VRage.Game.Voxels;
+using Medieval.GameSystems;
 
 namespace DayDot.Cobble
 {
@@ -125,8 +126,6 @@ namespace DayDot.Cobble
                 return;
             }
 
-            MyAPIGateway.Multiplayer.RegisterMessageHandler(PACKET, ReceivedPacket);
-
         }
 
         protected override void UnloadData()
@@ -202,6 +201,7 @@ namespace DayDot.Cobble
 
         private void Shoot()
         {
+
             var character = MyAPIGateway.Session.ControlledObject as IMyCharacter;
             if (character == null)
                 return;
@@ -217,14 +217,11 @@ namespace DayDot.Cobble
 
 
             var done = ToolProcess(map, target, view);
-
-            //ApplyMaterial(character.EntityId, pressedButton == MouseButton.Right);
-            //  var view = character.GetHeadMatrix(true, true);
-            // view.
         }
 
         private bool ToolProcess(IMyVoxelBase map, Vector3D target, MatrixD view)
         {
+            
             var shape = MyAPIGateway.Session.VoxelMaps.GetBoxVoxelHand();
             var vec = (Vector3D.One / 2) * 2.0;
             var bounding = new BoundingBoxD(-vec, vec);
@@ -255,14 +252,7 @@ namespace DayDot.Cobble
                 materialIndex = cobble.Index;
 
             MyAPIGateway.Session.VoxelMaps.PaintInShape(map, placeShape, materialIndex);
-
             return true;
-        }
-
-        private IMyVoxelMap GetTargetVoxel(IMyCubeGrid g, IMyEntity player)
-        {
-            var view = MyAPIGateway.Session.ControlledObject.GetHeadMatrix(true, true);
-            return null;
         }
     }
 }
