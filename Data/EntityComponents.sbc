@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  
+  <EntityComponents>
+    <EntityComponent xsi:type="MyObjectBuilder_DurabilityComponentDefinition">
+      <Id>
+        <TypeId>EntityDurabilityComponent</TypeId>
+        <SubtypeId>PavingHammer</SubtypeId>
+      </Id>
+      <DefaultHitDamage>0.1</DefaultHitDamage>
+      <SoundCue>ToolDestroyWood</SoundCue>
+      <ParticleEffect>BREAK_WOOD</ParticleEffect>
+      <DefinedHits>
+        <!--Iron Tool of medium quality with focus on building-->
+        <Hit Action="Attack" Material="Wood" Damage="1"/>
+        <Hit Action="Attack" Material="Rock" Damage="1"/>
+        <Hit Action="Attack" Material="Iron" Damage="1"/>
+        <Hit Action="Block" Material="Wood" Damage="1"/>
+        <!--Block values calculated from wood, because mace has wooden handle-->
+        <Hit Action="Block" Material="Rock" Damage="2"/>
+        <Hit Action="Block" Material="Iron" Damage="5"/>
+        <Hit Action="Mine" Material="Grass" Damage="1"/>
+        <Hit Action="Mine" Material="Soil" Damage="1"/>
+        <Hit Action="Mine" Material="Stone" Damage="2"/>
+        <Hit Action="Mine" Material="Iron" Damage="2"/>
+        <Hit Action="Mine" Material="Woods" Damage="1"/>
+        <Hit Action="Mine" Material="Rock" Damage="2"/>
+        <Hit Action="Cut" Material="Tree" Damage="1"/>
+        <Hit Action="Cut" Material="Wood" Damage="1"/>
+        <Hit Action="Build" Material="Wood" Damage="0.05"/>
+        <Hit Action="Build" Material="Rock" Damage="0.05"/>
+        <Hit Action="Build" Material="Iron" Damage="0.05"/>
+        <Hit Action="Deconstruct" Material="Wood" Damage="0.05"/>
+        <Hit Action="Deconstruct" Material="Rock" Damage="0.05"/>
+        <Hit Action="Deconstruct" Material="Iron" Damage="0.05"/>
+      </DefinedHits>
+    </EntityComponent>
+  </EntityComponents>
+</Definitions>

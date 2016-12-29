@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Definition xsi:type="MyObjectBuilder_FarmingSystemDefinition">
+    <Id>
+      <TypeId>MyObjectBuilder_FarmingSystemDefinition</TypeId>
+      <SubtypeId>Cobble</SubtypeId>
+    </Id>
+    <VoxelChangeRadius>2</VoxelChangeRadius>
+    <MinFarmDistance>1</MinFarmDistance>
+    <MaxFarmSlope>45</MaxFarmSlope>
+    <MaxPlantingDistance>2</MaxPlantingDistance>
+    <FarmableItemType>Farmable</FarmableItemType>
+    <PlowedMaterial>Stone_02</PlowedMaterial>
+    <PlantedMaterial>PlantedSoil</PlantedMaterial>
+    <ExhaustedMaterial>ExhaustedSoil</ExhaustedMaterial>
+    <PlowableMaterials>
+      <Material>Rocks_moss</Material>
+      <Material>Rocks_grass</Material>
+      <Material>Stone_02</Material>
+      <Material>Grass</Material>
+      <Material>Grass_02</Material>
+      <Material>Grass_old</Material>
+      <Material>Woods_needles</Material>
+      <Material>Woods_grass</Material>
+      <Material>Soil</Material>
+      <Material>PlowedSoil</Material>
+      <Material>PlantedSoil</Material>
+      <Material>ExhaustedSoil</Material>
+    </PlowableMaterials>
+    <PlantableMaterials>
+      <Material>PlowedSoil</Material>
+      <Material>PlantedSoil</Material>
+    </PlantableMaterials>
+  </Definition>
+</Definitions>

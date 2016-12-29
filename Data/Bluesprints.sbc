@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Blueprints>
+    <Blueprint>
+      <Id>
+        <TypeId>BlueprintDefinition</TypeId>
+        <SubtypeId>PavingHammer</SubtypeId>
+      </Id>
+      <DisplayName>Paving Hammer</DisplayName>
+      <Icon>Textures\GUI\Icons\PavingHammer.dds</Icon>
+      <Prerequisites>
+        <Item Amount="5" TypeId="Component" SubtypeId="WoodenSticks" />
+        <Item Amount="2" TypeId="Component" SubtypeId="IronIngot" />
+      </Prerequisites>
+      <Result Amount="1" TypeId="PhysicalGunObject" SubtypeId="PavingHammer" />
+      <BaseProductionTimeInSeconds>1</BaseProductionTimeInSeconds>
+    </Blueprint>
+  </Blueprints>
+</Definitions>
